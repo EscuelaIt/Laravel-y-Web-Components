@@ -1,0 +1,17 @@
+.Card {
+  padding: 1.5rem;
+  border: 1px solid #eee;
+  box-shadow: 2px 2px 6px #ddd;
+  text-align: left;
+
+  @media(min-width: 500px) {
+    padding: 2rem;
+  }
+  &-login {
+    width: 100%;
+    @media(min-width: 560px) {
+      display: inline-block;
+      width: 500px;
+    }
+  }
+}

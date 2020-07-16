@@ -1,0 +1,67 @@
+.Nav {
+  display: flex;
+  align-items: stretch;
+  
+  &-main {
+    font-size: 14px;
+    background-color: $primary-color;
+    height: 45px;
+    @media(min-width: 450px) {
+      height: 50px;
+      font-size: 16px;
+    }
+    @media(min-width: 601px) {
+      height: 55px;
+      --dw-icon-size: 36px;
+      font-size: 18px;
+
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  &-wrapper {
+    display: flex;
+    align-items: stretch;
+  }
+
+  &-title {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  &-logo {
+    margin-top: 5px;
+    max-width: 110px;
+    @media(min-width: 450px) {
+      max-width: 130px;
+    }
+    @media(min-width: 601px) {
+      max-width: 150px;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+    li {
+      margin: 0 4px;
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+      padding: 0 0 0 3px;
+
+      @media(min-width: 350px) {
+        padding: 0 6px;      
+      }
+      @media(min-width: 601px) {
+        padding: 0 8px;      
+      }
+    }
+  }
+}

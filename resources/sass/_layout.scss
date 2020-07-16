@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 100%;
+  font-family: $font-family-sans-serif;
+}
+body {
+  margin: 0;
+  background-color: #fff;
+  color: $text-color;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+@media #{$medium-and-up} {
+  .container {
+    width: 85%;
+  }
+}
+@media #{$large-and-up} {
+  .container {
+    width: 70%;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+main {
+  background-color: #fff;
+}
+
+footer {
+  font-size: 0.75rem;
+  margin-top: 2rem;
+  text-align: center;
+}

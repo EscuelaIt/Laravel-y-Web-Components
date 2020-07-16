@@ -1,0 +1,32 @@
+.Form {
+  &-field {
+    margin-bottom: 0.9rem; 
+
+    label {
+      font-size: 1em;
+      display: block;
+      margin-bottom: 2px;
+      color: $text-light-color;
+    }
+
+    label.Form-checkbox {
+      display: inline;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 2px solid $secondary-light-color;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+
+    input.Form-checkbox {
+      width: auto;
+    }
+
+    textarea {
+      height: 90px;
+    }
+  } 
+}

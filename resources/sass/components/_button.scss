@@ -1,0 +1,13 @@
+.Button {
+  border: none;
+  background-color: $primary-color;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $text-color;
+  }
+}

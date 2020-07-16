@@ -8,62 +8,37 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <div>
-                    <label for="name">{{ __('Name') }}</label>
+                <x-input-component 
+                    label="Nombre"
+                    name="name"
+                    value=""
+                    autofocus
+                ></x-input-component>
 
-                    <div>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <x-input-component 
+                    label="Email"
+                    name="email"
+                    value=""
+                ></x-input-component>
 
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
+                <x-input-component 
+                    label="Clave"
+                    name="password"
+                    value=""
+                    type="password"
+                ></x-input-component>
 
-                <div>
-                    <label for="email">{{ __('E-Mail Address') }}</label>
-
-                    <div>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-
-                <div>
-                    <label for="password">{{ __('Password') }}</label>
-
-                    <div>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
+                <x-input-component 
+                    label="Confirmar clave"
+                    name="password_confirmation"
+                    value=""
+                    type="password"
+                ></x-input-component>
 
                 <div>
-                    <label for="password-confirm">{{ __('Confirm Password') }}</label>
-
-                    <div>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                    </div>
-                </div>
-
-                <div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Register') }}
-                        </button>
-                    </div>
+                    <button type="submit" class="Button">
+                        {{ __('Register') }}
+                    </button>
                 </div>
             </form>
 

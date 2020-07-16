@@ -550,3 +550,66 @@ footer {
   }
 }
 
+.Form-field {
+  margin-bottom: 0.9rem;
+}
+
+.Form-field label {
+  font-size: 1em;
+  display: block;
+  margin-bottom: 2px;
+  color: #707070;
+}
+
+.Form-field label.Form-checkbox {
+  display: inline;
+}
+
+.Form-field input,
+.Form-field textarea {
+  width: 100%;
+  border: 2px solid #a98274;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 0.9em;
+}
+
+.Form-field input.Form-checkbox {
+  width: auto;
+}
+
+.Form-field textarea {
+  height: 90px;
+}
+
+.Button {
+  border: none;
+  background-color: #1565c0;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.Button:hover {
+  background-color: #303030;
+}
+
+.Grid {
+  display: grid;
+  row-gap: 0.8rem;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+
+.Grid-align-items-center {
+  align-items: center;
+}
+
+@media (min-width: 451px) {
+  .Grid-2-col-small-and-up {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+

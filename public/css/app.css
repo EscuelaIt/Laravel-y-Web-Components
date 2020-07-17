@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+html {
+  --eit-box-background: rgb(48, 232, 238);
+}
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -427,6 +431,10 @@ footer {
   font-size: 0.75rem;
   margin-top: 2rem;
   text-align: center;
+}
+
+p {
+  color: green;
 }
 
 .Nav {

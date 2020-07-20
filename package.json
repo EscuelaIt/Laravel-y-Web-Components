@@ -21,6 +21,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@dile/dile-checkbox": "^1.0.1",
         "lit-element": "^2.3.1"
     }
 }

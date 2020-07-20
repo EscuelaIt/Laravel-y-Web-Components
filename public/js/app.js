@@ -86,6 +86,167 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@dile/dile-checkbox/dile-checkbox.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@dile/dile-checkbox/dile-checkbox.js ***!
+  \***********************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_DileCheckbox_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/DileCheckbox.js */ "./node_modules/@dile/dile-checkbox/src/DileCheckbox.js");
+
+
+window.customElements.define("dile-checkbox", _src_DileCheckbox_js__WEBPACK_IMPORTED_MODULE_0__["DileCheckbox"]);
+
+
+/***/ }),
+
+/***/ "./node_modules/@dile/dile-checkbox/src/DileCheckbox.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@dile/dile-checkbox/src/DileCheckbox.js ***!
+  \**************************************************************/
+/*! exports provided: DileCheckbox */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DileCheckbox", function() { return DileCheckbox; });
+/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ "./node_modules/lit-element/lit-element.js");
+
+
+class DileCheckbox extends lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"] {
+  static get properties() {
+    return {
+      checked: { type: Boolean },
+      disabled: { type: Boolean },
+      hasInner: { type: Boolean },
+    };
+  }
+
+  constructor() {
+    super();
+    this.checked = false;
+  }
+
+  static get styles() {
+    return lit_element__WEBPACK_IMPORTED_MODULE_0__["css"]`
+      :host {
+        display: inline-block;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      div.disabled {
+        opacity: 0.5;
+        cursor: auto;
+      }
+      .checkbox {
+        display: flex;
+        background-color: var(--dile-checkbox-checked-color, #30a030);
+        border-radius: 4px;
+        width: var(--dile-checkbox-size, 20px);
+        height: var(--dile-checkbox-size, 20px);
+        line-height: 0;
+        align-items: center;
+        justify-content: center;
+      }
+      .isUnchecked {
+        background-color: var(--dile-checkbox-unchecked-color, #ccc);
+      }
+      path[fill="none"],
+      .checked path[fill="none"] {
+        fill: transparent;
+      }
+      path {
+        fill: var(--dile-checkbox-fill-color, #fff);
+      }
+      .checked path {
+        fill: var(--dile-checkbox-unchecked-fill-color, #fff);
+      }
+      svg {
+        width: var(--dile-checkbox-size, 20px);
+        height: var(--dile-checkbox-size, 20px);
+        line-height: var(--dile-checkbox-size, 20px);
+      }
+      .label {
+        margin-left: 10px;
+        font-weight: var(--dile-checkbox-font-weight, normal);
+        color: var(--dile-checkbox-label-color, #303030);
+      }
+      .disabled .label {
+        color: var(--dile-checkbox-label-disabled-color, #303030);
+      }
+    `;
+  }
+
+  firstUpdated() {
+    this.hasInner = this.innerHTML.trim().length ? true : false;
+  }
+  render() {
+    return lit_element__WEBPACK_IMPORTED_MODULE_0__["html"]`
+      <div @click="${this.doClick}" class="${this.disabled ? "disabled" : ""}">
+        <a href="#" @click="${this.linkClick}" @keypress="${this.doKeyPress}" class="checkbox ${this.checked ? "isChecked" : "isUnchecked"}">
+          ${this.checked ? this.checkedIcon : this.unCheckedIcon}
+        </a>
+        ${this.hasInner
+          ? lit_element__WEBPACK_IMPORTED_MODULE_0__["html"]` <span class="label">
+              <slot></slot>
+            </span>`
+          : ""}
+      </div>
+    `;
+  }
+
+  doClick() {
+    if (this.disabled) {
+      return;
+    }
+    this.checked = !this.checked;
+    this.dispatchEvent(
+      new CustomEvent("dile-checkbox-changed", {
+        bubbles: true,
+        composed: true,
+        detail: this.checked,
+      })
+    );
+  }
+
+  get checkedIcon() {
+    return lit_element__WEBPACK_IMPORTED_MODULE_0__["html"]`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path
+        d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+      />
+    </svg>`;
+  }
+  get unCheckedIcon() {
+    return lit_element__WEBPACK_IMPORTED_MODULE_0__["html"]`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path
+        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+      />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </svg>`;
+  }
+
+  doKeyPress(e) {
+    e.preventDefault();
+    if (e.keyCode == 32 || e.code == "Space") {
+      this.doClick();
+    }
+  }
+  
+  linkClick(e) {
+    e.preventDefault();
+  }
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -5503,6 +5664,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_eit_box_info__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/eit-box-info */ "./resources/js/components/eit-box-info.js");
+/* harmony import */ var _components_eit_input_checkbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/eit-input-checkbox */ "./resources/js/components/eit-input-checkbox.js");
+
 
 
 /***/ }),
@@ -5616,6 +5779,134 @@ var EitBoxInfo = /*#__PURE__*/function (_LitElement) {
 }(lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"]);
 
 customElements.define('eit-box-info', EitBoxInfo);
+
+/***/ }),
+
+/***/ "./resources/js/components/eit-input-checkbox.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/eit-input-checkbox.js ***!
+  \*******************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ "./node_modules/lit-element/lit-element.js");
+/* harmony import */ var _dile_dile_checkbox_dile_checkbox_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @dile/dile-checkbox/dile-checkbox.js */ "./node_modules/@dile/dile-checkbox/dile-checkbox.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n            <dile-checkbox\n                ?checked=\"", "\"\n                @dile-checkbox-changed=\"", "\"\n                id=\"elcheck\"\n                ><slot></slot></dile-checkbox\n            >\n        "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n            :host {\n                display: block;\n                --dile-checkbox-checked-color: var(--secondary-color, #12af51);\n                --dile-checkbox-size: 24px;\n            }\n        "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var EitInputCheckbox = /*#__PURE__*/function (_LitElement) {
+  _inherits(EitInputCheckbox, _LitElement);
+
+  var _super = _createSuper(EitInputCheckbox);
+
+  _createClass(EitInputCheckbox, null, [{
+    key: "styles",
+    get: function get() {
+      return Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject());
+    }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {
+        name: {
+          type: String
+        },
+        value: {
+          type: String
+        },
+        checked: {
+          type: Boolean
+        }
+      };
+    }
+  }]);
+
+  function EitInputCheckbox() {
+    var _this;
+
+    _classCallCheck(this, EitInputCheckbox);
+
+    _this = _super.call(this);
+    _this.checked = false;
+    return _this;
+  }
+
+  _createClass(EitInputCheckbox, [{
+    key: "firstUpdated",
+    value: function firstUpdated() {
+      this.elcheck = this.shadowRoot.getElementById("elcheck");
+      this.input = document.createElement("input");
+      this.input.setAttribute("type", "checkbox");
+      this.input.setAttribute("name", this.name);
+      this.input.setAttribute("value", this.value);
+      this.input.setAttribute("style", "display: none");
+      this.input.checked = this.cheked;
+      this.appendChild(this.input);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject2(), this.checked, this.changeChecked);
+    }
+  }, {
+    key: "changeChecked",
+    value: function changeChecked(e) {
+      //console.log(e.detail);
+      this.input.checked = e.detail;
+      this.checked = e.detail;
+    }
+  }]);
+
+  return EitInputCheckbox;
+}(lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"]);
+
+customElements.define('eit-input-checkbox', EitInputCheckbox);
 
 /***/ }),
 

@@ -2,6 +2,8 @@
 
 html {
   --eit-box-background: rgb(48, 232, 238);
+  --primary-color: #1565c0;
+  --secondary-color: #795548;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -383,6 +385,20 @@ template {
 
 [hidden] {
   display: none;
+}
+
+.invalid-feedback {
+  font-size: 0.9em;
+  color: #e3342f;
+}
+
+.is-invalid {
+  border-color: #e3342f !important;
+}
+
+.translateup {
+  position: relative;
+  top: -0.5rem;
 }
 
 * {

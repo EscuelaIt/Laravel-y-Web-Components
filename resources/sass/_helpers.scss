@@ -1,0 +1,11 @@
+.invalid-feedback {
+  font-size: 0.9em;
+  color: $red;
+}
+.is-invalid {
+  border-color: $red !important;
+}
+.translateup {
+  position: relative;
+  top: -0.5rem;
+}

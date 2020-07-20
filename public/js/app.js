@@ -5919,6 +5919,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_eit_box_info__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/eit-box-info */ "./resources/js/components/eit-box-info.js");
 /* harmony import */ var _components_eit_input_checkbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/eit-input-checkbox */ "./resources/js/components/eit-input-checkbox.js");
 /* harmony import */ var _components_eit_feedback__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/eit-feedback */ "./resources/js/components/eit-feedback.js");
+/* harmony import */ var _components_icons_eit_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/icons/eit-icon */ "./resources/js/components/icons/eit-icon.js");
+
 
 
 
@@ -6282,6 +6284,161 @@ var EitInputCheckbox = /*#__PURE__*/function (_LitElement) {
 }(lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"]);
 
 customElements.define('eit-input-checkbox', EitInputCheckbox);
+
+/***/ }),
+
+/***/ "./resources/js/components/icons/eit-icon.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/icons/eit-icon.js ***!
+  \***************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ "./node_modules/lit-element/lit-element.js");
+/* harmony import */ var _icons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./icons */ "./resources/js/components/icons/icons.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n        <div>\n            ", "\n        </div>\n    "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n        :host[hidden] {\n            display: none;\n        }\n        :host {\n            display: inline-block;\n        }\n        path {\n            fill: var(--eit-icon-color, #888);\n            transition: fill 0.3s ease;\n        }\n        path[fill=\"none\"] {\n            fill: transparent;\n        }\n        svg {\n            width: var(--eit-icon-size, 24px);\n            height: var(--eit-icon-size, 24px);\n        }\n        div {\n            display: flex;\n        }\n    "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var EitIcon = /*#__PURE__*/function (_LitElement) {
+  _inherits(EitIcon, _LitElement);
+
+  var _super = _createSuper(EitIcon);
+
+  _createClass(EitIcon, null, [{
+    key: "styles",
+    get: function get() {
+      return Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject());
+    }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {
+        icon: {
+          type: String
+        }
+      };
+    }
+  }]);
+
+  function EitIcon() {
+    var _this;
+
+    _classCallCheck(this, EitIcon);
+
+    _this = _super.call(this);
+    _this.icon = "info";
+    return _this;
+  }
+
+  _createClass(EitIcon, [{
+    key: "render",
+    value: function render() {
+      return Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject2(), _icons__WEBPACK_IMPORTED_MODULE_1__["iconsLibrary"][this.icon]);
+    }
+  }]);
+
+  return EitIcon;
+}(lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"]);
+
+customElements.define('eit-icon', EitIcon);
+
+/***/ }),
+
+/***/ "./resources/js/components/icons/icons.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/icons/icons.js ***!
+  \************************************************/
+/*! exports provided: iconsLibrary */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "iconsLibrary", function() { return iconsLibrary; });
+/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ "./node_modules/lit-element/lit-element.js");
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z\"/></svg>"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z\"/></svg>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z\"/></svg>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var iconsLibrary = {
+  info: Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject()),
+  cancel: Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject2()),
+  shopping_cart: Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject3())
+};
 
 /***/ }),
 

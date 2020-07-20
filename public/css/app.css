@@ -401,6 +401,11 @@ template {
   top: -0.5rem;
 }
 
+.big-icon {
+  --eit-icon-size: 96px;
+  --eit-icon-color: rgb(221, 30, 164);
+}
+
 * {
   box-sizing: border-box;
 }

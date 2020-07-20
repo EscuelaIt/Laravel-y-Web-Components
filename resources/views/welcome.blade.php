@@ -18,6 +18,8 @@
         <p>Dignissimos voluptas cum quisquam ducimus. Aliquid quasi in et repudiandae, sunt nulla non expedita vero saepe, deserunt vel commodi, voluptatum eligendi eaque cum sit veritatis ea odit doloribus perspiciatis facilis?</p>
 
     </eit-box-info>
+
+    <eit-icon icon="shopping_cart" class="big-icon"></eit-icon>
 </div>
 
 

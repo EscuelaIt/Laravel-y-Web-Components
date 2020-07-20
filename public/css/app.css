@@ -406,6 +406,14 @@ template {
   --eit-icon-color: rgb(221, 30, 164);
 }
 
+.box-center {
+  --eit-info-box-align: center;
+  --eit-info-box-background-color: rgb(160, 27, 27);
+  --eit-info-box-color: #fff;
+  --eit-info-box-icon-color: #fff;
+  --eit-info-box-close-icon-color: #ffc;
+}
+
 * {
   box-sizing: border-box;
 }

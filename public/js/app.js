@@ -247,6 +247,76 @@ class DileCheckbox extends lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"
 
 /***/ }),
 
+/***/ "./node_modules/@dile/dile-slide-down-mixin/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@dile/dile-slide-down-mixin/index.js ***!
+  \***********************************************************/
+/*! exports provided: DileSlideDownMixin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_DileSlideDownMixin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/DileSlideDownMixin.js */ "./node_modules/@dile/dile-slide-down-mixin/src/DileSlideDownMixin.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DileSlideDownMixin", function() { return _src_DileSlideDownMixin_js__WEBPACK_IMPORTED_MODULE_0__["DileSlideDownMixin"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@dile/dile-slide-down-mixin/src/DileSlideDownMixin.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@dile/dile-slide-down-mixin/src/DileSlideDownMixin.js ***!
+  \****************************************************************************/
+/*! exports provided: DileSlideDownMixin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DileSlideDownMixin", function() { return DileSlideDownMixin; });
+const DileSlideDownMixin = (SuperClass) => {
+  return class extends SuperClass {
+    _getElementHeight(elem, targetHeight = "0px") {
+      let height = 300;
+      elem.style.opacity = 0;
+      elem.style.height = "auto";
+      if (elem.offsetHeight) {
+        height = elem.offsetHeight;
+      }
+      elem.style.height = targetHeight;
+      elem.style.opacity = 1;
+      return height;
+    }
+
+    slideShow(elem, targetHeight = "0px") {
+      if (elem) {
+        let height = this._getElementHeight(elem, targetHeight);
+        setTimeout(() => {
+          elem.style.height = height + "px";
+        }, 50);
+        setTimeout(() => {
+          elem.style.height = "auto";
+          elem.style.overflow = "visible";
+        }, 600);
+      }
+    }
+    slideHide(elem, targetHeight = "0px") {
+      if (elem) {
+        let height = elem.offsetHeight;
+        elem.style.overflow = "hidden";
+        if (height) {
+          elem.style.height = height + "px";
+        }
+        setTimeout(() => {
+          elem.style.height = targetHeight;
+        }, 50);
+      }
+    }
+  };
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/@dile/dile-toast/dile-toast-item.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@dile/dile-toast/dile-toast-item.js ***!
@@ -5917,9 +5987,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_eit_box_info__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/eit-box-info */ "./resources/js/components/eit-box-info.js");
-/* harmony import */ var _components_eit_input_checkbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/eit-input-checkbox */ "./resources/js/components/eit-input-checkbox.js");
-/* harmony import */ var _components_eit_feedback__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/eit-feedback */ "./resources/js/components/eit-feedback.js");
-/* harmony import */ var _components_icons_eit_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/icons/eit-icon */ "./resources/js/components/icons/eit-icon.js");
+/* harmony import */ var _components_eit_info_box__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/eit-info-box */ "./resources/js/components/eit-info-box.js");
+/* harmony import */ var _components_eit_input_checkbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/eit-input-checkbox */ "./resources/js/components/eit-input-checkbox.js");
+/* harmony import */ var _components_eit_feedback__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/eit-feedback */ "./resources/js/components/eit-feedback.js");
+/* harmony import */ var _components_icons_eit_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/icons/eit-icon */ "./resources/js/components/icons/eit-icon.js");
+
 
 
 
@@ -6156,6 +6228,135 @@ var EitFeedback = /*#__PURE__*/function (_LitElement) {
 }(lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"]);
 
 customElements.define('eit-feedback', EitFeedback);
+
+/***/ }),
+
+/***/ "./resources/js/components/eit-info-box.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/eit-info-box.js ***!
+  \*************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ "./node_modules/lit-element/lit-element.js");
+/* harmony import */ var _dile_dile_slide_down_mixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @dile/dile-slide-down-mixin */ "./node_modules/@dile/dile-slide-down-mixin/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n                              <div class=\"title\">", "</div>\n                          "]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n                          <span class=\"exit\" @click=\"", "\"\n                              ><eit-icon icon=\"cancel\"></eit-icon\n                          ></span>\n                      "]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n            <section id=\"all\">\n                ", "\n                <div class=\"box\">\n                    ", "\n                    <div class=\"flexcontent\">\n                        <span class=\"infoicon\"\n                            ><eit-icon icon=\"info\"></eit-icon\n                        ></span>\n                        <div class=\"content\">\n                            <slot></slot>\n                        </div>\n                    </div>\n                </div>\n            </section>\n        "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n            :host {\n                display: block;\n                --eit-icon-color: var(--eit-info-box-icon-color, #1565c0);\n                text-align: var(--eit-info-box-align, left);\n                color: var(--eit-info-box-color, #303030);\n            }\n            #all {\n                position: relative;\n                transition: height 0.8s ease-in;\n                overflow: hidden;\n            }\n            .box {\n                border-radius: 0.6rem;\n                padding: 5px 5px 5px 15px;\n                background-color: var(--eit-info-box-background-color, #ddd);\n            }\n            .flexcontent {\n                display: flex;\n                align-items: center;\n            }\n            .exit {\n                position: absolute;\n                top: 2px;\n                right: 2px;\n                --eit-icon-color: var(--eit-info-box-close-icon-color, #f55);\n                z-index: 1;\n                cursor: pointer;\n            }\n            .title {\n                margin-bottom: 15px;\n                font-size: 1.3em;\n                font-weight: 300;\n            }\n            .content {\n                flex-grow: 1;\n            }\n            .closed {\n                display: none;\n            }\n            .infoicon {\n                margin: 0 5px 0 -10px;\n            }\n            .infoicon eit-icon {\n                position: relative;\n                top: 2px;\n            }\n            @media (min-width: 400px) {\n                .box {\n                    --eit-icon-size: 26px;\n                }\n                .infoicon {\n                    margin: 0 5px 0 -5px;\n                }\n            }\n            @media (min-width: 500px) {\n                .box {\n                    --eit-icon-size: 28px;\n                }\n                .infoicon {\n                    margin: 0 15px 0 0px;\n                }\n            }\n        "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var EitInfoBox = /*#__PURE__*/function (_DileSlideDownMixin) {
+  _inherits(EitInfoBox, _DileSlideDownMixin);
+
+  var _super = _createSuper(EitInfoBox);
+
+  _createClass(EitInfoBox, null, [{
+    key: "styles",
+    get: function get() {
+      return Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject());
+    }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {
+        showCloseButton: {
+          type: Boolean
+        }
+      };
+    }
+  }]);
+
+  function EitInfoBox() {
+    var _this;
+
+    _classCallCheck(this, EitInfoBox);
+
+    _this = _super.call(this);
+    _this.showCloseButton = false;
+    return _this;
+  }
+
+  _createClass(EitInfoBox, [{
+    key: "render",
+    value: function render() {
+      return Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject2(), this.showCloseButton ? Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject3(), this.close) : "", this.title ? Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject4(), this.title) : "");
+    }
+  }, {
+    key: "close",
+    value: function close() {
+      var element = this.shadowRoot.getElementById("all");
+      this.slideHide(element);
+    }
+  }]);
+
+  return EitInfoBox;
+}(Object(_dile_dile_slide_down_mixin__WEBPACK_IMPORTED_MODULE_1__["DileSlideDownMixin"])(lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"]));
+
+customElements.define('eit-info-box', EitInfoBox);
 
 /***/ }),
 

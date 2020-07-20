@@ -20,6 +20,18 @@
     </eit-box-info>
 
     <eit-icon icon="shopping_cart" class="big-icon"></eit-icon>
+
+    <eit-info-box message="Esto es otro mensaje" >
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi pariatur, facilis repellat distinctio doloremque, in repellendus delectus sed architecto quas et voluptatibus aliquid aperiam laborum beatae quos amet molestiae a.</p>
+        <p>Dolorum corrupti perspiciatis ab sapiente pariatur sed velit a ratione possimus illo similique iste inventore facere, rem cum, quasi consequuntur provident quae totam eius ipsam aspernatur? Magnam veniam natus itaque.</p>
+        <p>Dignissimos voluptas cum quisquam ducimus. Aliquid quasi in et repudiandae, sunt nulla non expedita vero saepe, deserunt vel commodi, voluptatum eligendi eaque cum sit veritatis ea odit doloribus perspiciatis facilis?</p>
+
+    </eit-info-box>
+    <hr>
+    <eit-info-box class="box-center" title="Hola a todos!" showCloseButton>
+        lalala
+    </eit-info-box>
 </div>
 
 

@@ -7,9 +7,10 @@
     <div class="Card Card-login">
 
         @if (session('status'))
-            <div class="alert alert-success" role="alert">
+            <eit-info-box showCloseButton>
                 {{ session('status') }}
-            </div>
+            </eit-info-box>
+            <br>
         @endif
 
         <form method="POST" action="{{ route('password.email') }}">

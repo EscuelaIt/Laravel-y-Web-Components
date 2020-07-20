@@ -19,6 +19,13 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/mensaje', function () {
+    return redirect('/')->with(['success' => 'Ok todo correcto con el mensaje']);
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

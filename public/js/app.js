@@ -247,6 +247,259 @@ class DileCheckbox extends lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"
 
 /***/ }),
 
+/***/ "./node_modules/@dile/dile-toast/dile-toast-item.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@dile/dile-toast/dile-toast-item.js ***!
+  \**********************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_DileToastItem_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/DileToastItem.js */ "./node_modules/@dile/dile-toast/src/DileToastItem.js");
+
+
+window.customElements.define("dile-toast-item", _src_DileToastItem_js__WEBPACK_IMPORTED_MODULE_0__["DileToastItem"]);
+
+
+/***/ }),
+
+/***/ "./node_modules/@dile/dile-toast/dile-toast.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@dile/dile-toast/dile-toast.js ***!
+  \*****************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_DileToast_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/DileToast.js */ "./node_modules/@dile/dile-toast/src/DileToast.js");
+/* harmony import */ var _dile_toast_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dile-toast-item */ "./node_modules/@dile/dile-toast/dile-toast-item.js");
+
+
+
+window.customElements.define("dile-toast", _src_DileToast_js__WEBPACK_IMPORTED_MODULE_0__["DileToast"]);
+
+
+/***/ }),
+
+/***/ "./node_modules/@dile/dile-toast/src/DileToast.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@dile/dile-toast/src/DileToast.js ***!
+  \********************************************************/
+/*! exports provided: DileToast */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DileToast", function() { return DileToast; });
+/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ "./node_modules/lit-element/lit-element.js");
+
+
+class DileToast extends lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"] {
+  static get properties() {
+    return {
+      /* Messages array: Array of objects. You usually will not touch directly this array, instead of it, use the open() method */
+      messages: { type: Array },
+      /* Miliseconds the feedback message remains on the screen */
+      duration: { type: Number },
+    };
+  }
+
+  constructor() {
+    super();
+    this.messages = [];
+    this.duration = 3000;
+    this.cleanTimeout = false;
+  }
+
+  static get styles() {
+    return lit_element__WEBPACK_IMPORTED_MODULE_0__["css"]`
+      :host {
+        display: flex;
+        flex-direction: column-reverse;
+        position: fixed;
+        bottom: 20px;
+        left: 15px;
+      }
+    `;
+  }
+
+  render() {
+    return lit_element__WEBPACK_IMPORTED_MODULE_0__["html"]`
+      ${this.messages.map(
+        (msg) => lit_element__WEBPACK_IMPORTED_MODULE_0__["html"]`
+          <dile-toast-item
+            .msg="${msg}"
+            duration="${this.duration}"
+          ></dile-toast-item>
+        `
+      )}
+    `;
+  }
+
+  /**
+   * Send a message to show in the screen
+   * @param text the text of the message
+   * @param toastType the status of the message (success, error, neutral)
+   */
+  open(text, toastType = "neutral") {
+    this.messages = [
+      ...this.messages,
+      {
+        text,
+        toastType,
+        hidden: false,
+        opening: true,
+      },
+    ];
+    this._programMessageClean();
+    this._programMessageHide();
+  }
+
+  /**
+   * Programs the hiding of the last message, after it's duration time
+   */
+  _programMessageHide() {
+    setTimeout(() => {
+      let foundItemToHide = false;
+      this.messages = this.messages.map((item) => {
+        if (!foundItemToHide && !item.hidden) {
+          foundItemToHide = true;
+          return {
+            ...item,
+            hidden: true,
+          };
+        } else {
+          return item;
+        }
+      });
+    }, this.duration);
+  }
+
+  /**
+   * Programs the cleaning of the array of messages, removing the hidden messages elements
+   */
+  _programMessageClean() {
+    if (this.cleanTimeout) {
+      clearTimeout(this.cleanTimeout);
+    }
+    this.cleanTimeout = setTimeout(() => {
+      this.messages = this.messages.filter((item) => !item.hidden);
+    }, this.duration + 1000);
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@dile/dile-toast/src/DileToastItem.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@dile/dile-toast/src/DileToastItem.js ***!
+  \************************************************************/
+/*! exports provided: DileToastItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DileToastItem", function() { return DileToastItem; });
+/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ "./node_modules/lit-element/lit-element.js");
+
+
+class DileToastItem extends lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"] {
+  static get properties() {
+    return {
+      msg: { type: Object },
+    };
+  }
+
+  constructor() {
+    super();
+    this.msg = {
+      msg: "",
+      toastType: "neutral",
+      hidden: false,
+      opening: true,
+    };
+  }
+
+  static get styles() {
+    return lit_element__WEBPACK_IMPORTED_MODULE_0__["css"]`
+      * {
+        box-sizing: border-box;
+      }
+      :host {
+        display: block;
+      }
+      div {
+        color: var(--dile-toast-text-color, #fff);
+        padding: var(--dile-toast-padding, 10px 15px);
+        margin-top: 10px;
+        position: relative;
+        top: 0;
+        opacity: 1;
+        width: var(--dile-toast-width, 280px);
+        overflow: hidden;
+        transition: all 0.4s ease;
+        z-index: var(--dile-toast-z-index, 1001);
+        font-size: var(--dile-toast-font-size, 1em);
+        font-weight: var(--dile-toast-font-weight, normal);
+        border-radius: var(--dile-toast-border-radius, 0);
+      }
+      .hidden {
+        top: 20px;
+        opacity: 0;
+        height: 0;
+        padding: 0;
+      }
+      .error {
+        background-color: var(--dile-toast-error-color, #e74c3c);
+      }
+      .success {
+        background-color: var(--dile-toast-success-color, #27ae60);
+      }
+      .neutral {
+        background-color: var(--dile-toast-neutral-color, #303030);
+      }
+      .opening {
+        top: -20px;
+      }
+    `;
+  }
+
+  render() {
+    return lit_element__WEBPACK_IMPORTED_MODULE_0__["html"]`
+      <div
+        class="${this.msg.hidden ? "hidden" : ""} ${this.msg.opening
+          ? "opening"
+          : ""} ${this.getClassType(this.msg.toastType)}"
+      >
+        ${this.msg.text}
+      </div>
+    `;
+  }
+
+  firstUpdated() {
+    setTimeout(() => {
+      this.msg.opening = false;
+      this.requestUpdate();
+    }, 20);
+  }
+
+  getClassType(toastType) {
+    switch (toastType) {
+      case "error":
+      case "success":
+        return toastType;
+      default:
+        return "neutral";
+    }
+  }
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -5665,6 +5918,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_eit_box_info__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/eit-box-info */ "./resources/js/components/eit-box-info.js");
 /* harmony import */ var _components_eit_input_checkbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/eit-input-checkbox */ "./resources/js/components/eit-input-checkbox.js");
+/* harmony import */ var _components_eit_feedback__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/eit-feedback */ "./resources/js/components/eit-feedback.js");
+
 
 
 
@@ -5779,6 +6034,126 @@ var EitBoxInfo = /*#__PURE__*/function (_LitElement) {
 }(lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"]);
 
 customElements.define('eit-box-info', EitBoxInfo);
+
+/***/ }),
+
+/***/ "./resources/js/components/eit-feedback.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/eit-feedback.js ***!
+  \*************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lit_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lit-element */ "./node_modules/lit-element/lit-element.js");
+/* harmony import */ var _dile_dile_toast_dile_toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @dile/dile-toast/dile-toast */ "./node_modules/@dile/dile-toast/dile-toast.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n        <dile-toast id=\"toast\" duration=", "></dile-toast>\n    "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n        :host {\n            display: block;\n            position: fixed;\n            z-index: 999999;\n            --dile-toast-z-index: 999999;\n            --dile-toast-neutral-color: #1976d2;\n        }\n        @media (min-width: 500px) {\n            dile-toast {\n                --dile-toast-width: 450px;\n                --dile-toast-padding: 15px 20px;\n            }\n        }\n    "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var EitFeedback = /*#__PURE__*/function (_LitElement) {
+  _inherits(EitFeedback, _LitElement);
+
+  var _super = _createSuper(EitFeedback);
+
+  _createClass(EitFeedback, null, [{
+    key: "styles",
+    get: function get() {
+      return Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["css"])(_templateObject());
+    }
+  }, {
+    key: "properties",
+    get: function get() {
+      return {
+        time: {
+          type: Number
+        },
+        initMsg: {
+          type: String
+        },
+        initStatus: {
+          type: String
+        }
+      };
+    }
+  }]);
+
+  function EitFeedback() {
+    var _this;
+
+    _classCallCheck(this, EitFeedback);
+
+    _this = _super.call(this);
+    _this.time = 5000;
+    _this.initStatus = "neutral";
+    return _this;
+  }
+
+  _createClass(EitFeedback, [{
+    key: "render",
+    value: function render() {
+      return Object(lit_element__WEBPACK_IMPORTED_MODULE_0__["html"])(_templateObject2(), this.time);
+    }
+  }, {
+    key: "firstUpdated",
+    value: function firstUpdated() {
+      console.log(this.initMsg);
+      this.toast = this.shadowRoot.getElementById("toast");
+
+      if (this.initMsg) {
+        this.toast.open(this.initMsg, this.initStatus);
+      }
+    }
+  }]);
+
+  return EitFeedback;
+}(lit_element__WEBPACK_IMPORTED_MODULE_0__["LitElement"]);
+
+customElements.define('eit-feedback', EitFeedback);
 
 /***/ }),
 

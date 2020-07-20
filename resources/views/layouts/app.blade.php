@@ -30,5 +30,6 @@
         Lit Works Unlimited - Laravel y Web Components
     </footer>
 
+    @include('common.feedback-element')
 </body>
 </html>

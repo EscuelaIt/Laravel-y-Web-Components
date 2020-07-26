@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -36,5 +37,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    // para que devuelva el json del usuario cuando lo llaman vía ajax
+    protected function authenticated(Request $request, $user)
+    {
+        if($request->ajax()) {
+            return json_encode([
+                'user' => $user,
+                'token' => csrf_token()
+            ]);
+        }
     }
 }

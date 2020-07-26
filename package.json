@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@dile/dile-checkbox": "^1.0.1",
+        "@dile/dile-modal": "^1.0.1",
         "@dile/dile-slide-down-mixin": "^1.0.1",
         "@dile/dile-toast": "^1.0.0",
         "lit-element": "^2.3.1"

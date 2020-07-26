@@ -29,3 +29,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('api-user/get', 'ApiController@getUser');
+
+Route::get('/protegida', 'FrontController@protegida')->middleware(['auth']);
+Route::get('/publica', 'FrontController@publica');

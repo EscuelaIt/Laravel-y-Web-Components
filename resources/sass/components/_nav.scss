@@ -31,7 +31,14 @@
     flex-grow: 1;
     display: flex;
     align-items: center;
+    
   }
+  &-title-login{
+    justify-content: center;
+    flex-grow: 1;
+    display: block;
+  }
+  
 
   &-logo {
     margin-top: 5px;

@@ -508,6 +508,12 @@ p {
   align-items: center;
 }
 
+.Nav-title-login {
+  justify-content: center;
+  flex-grow: 1;
+  display: block;
+}
+
 .Nav-logo {
   margin-top: 5px;
   max-width: 110px;

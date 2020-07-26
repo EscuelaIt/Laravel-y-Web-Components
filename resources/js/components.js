@@ -3,3 +3,4 @@ import "./components/eit-info-box";
 import './components/forms/eit-input-checkbox';
 import './components/eit-feedback';
 import './components/icons/eit-icon';
+import './components/user/eit-user-control';

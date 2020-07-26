@@ -5,6 +5,9 @@
 <div class="Panel">
     <h1>Bienvenidos a Lit Works</h1>
 
+    <p>Entrar en una <a href="/protegida">página protegida</a></p>
+    <p>Entrar en una <a href="/publica">página pública</a></p>
+
     <x-hi-component name="EscuelaIT" :email="$email" class="lalala" id="otra">
         <p>algo más de contenido</p>
         <hr>

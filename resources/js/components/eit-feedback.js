@@ -41,7 +41,7 @@ class EitFeedback extends connect(store)(LitElement) {
 
   stateChanged(state) {
     console.log('nuevo state', state);
-    this.incomingMsg = state.feedback;
+    this.incomingMsg = state.app.feedback;
   }
 
   updated(changedProperties) {

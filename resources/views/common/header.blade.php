@@ -12,14 +12,6 @@
       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
           @csrf
       </form>
-      <div slot="logininputs" class="Form-field">
-        <p>
-          <input type="text" id="loginemail" placeholder="email">
-        </p>
-        <p>
-          <input type="password" id="loginpass" placeholder="clave">
-        </p>
-      </div>
     </eit-user-control>
   </div>
 </nav>

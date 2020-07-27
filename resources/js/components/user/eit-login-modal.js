@@ -3,7 +3,14 @@ import '@dile/dile-modal/dile-modal';
 import '../forms/eit-button';
 import '../eit-inline-feedback';
 
-class EitLoginModal  extends LitElement {
+
+import { store } from '../../redux/store';
+import { connect } from 'pwa-helpers';
+
+import { changeLoginVisibility } from '../../redux/actions/app_actions';
+import { logUser } from '../../redux/actions/user_actions';
+
+class EitLoginModal  extends connect(store)(LitElement) {
 
   static get styles() {
     return css`
@@ -69,8 +76,18 @@ class EitLoginModal  extends LitElement {
     `;
   }
 
+  stateChanged(state) {
+    this.opened = state.app.loginrMenuOpened;
+    if (this.opened) {
+      this.elmodal.open();
+    } else if (this.elmodal && this.elmodal.opened) {
+      this.elmodal.close();
+    }
+  }
+
   static get properties() {
     return { 
+      opened: { type: Boolean },
       loggedIn: { type: Boolean },
     };
   }
@@ -91,7 +108,7 @@ class EitLoginModal  extends LitElement {
 
   render() {
     return html`
-      <dile-modal id="elmodal" showCloseIcon>
+      <dile-modal id="elmodal" showCloseIcon @dile-modal-closed="${this.onModalClosed}">
         <h4>Introduce email y clave</h4>
         <div class="inputs">
           <slot></slot>
@@ -147,15 +164,7 @@ class EitLoginModal  extends LitElement {
           console.log('Login realizado correctamente' , response);
           this.elmodal.close();
           this.updateTokens(response.data.token);
-          this.dispatchEvent(
-            new CustomEvent("login-valid", {
-              bubbles: true,
-              composed: true,
-              detail: {
-                user: response.data.user
-              }
-            })
-          );
+          store.dispatch(logUser(response.data.user));
         } else {
           this.feedbackElement.negativeFeedback("Se ha denegado");
         }
@@ -207,6 +216,11 @@ class EitLoginModal  extends LitElement {
     window.axios.defaults.headers.common["X-CSRF-TOKEN"] = token;
     document.querySelector("#logout-form input[name=_token]").value = token;
   }
+
+  onModalClosed() {
+    store.dispatch(changeLoginVisibility(false));
+  }
+
 
 }
 

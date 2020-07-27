@@ -1,4 +1,5 @@
 export const SEND_FEEDBACK = "SEND_FEEDBACK";
+export const CHANGE_LOGIN_VISIBILITY = "CHANGE_LOGIN_VISIBILITY";
 
 /**
  * Modelo del feedback
@@ -31,4 +32,11 @@ export const neutralFeedback = msg => {
     msg,
     status: "neutral"
   });
+};
+
+export const changeLoginVisibility = opened => {
+  return {
+    type: CHANGE_LOGIN_VISIBILITY,
+    opened
+  };
 };

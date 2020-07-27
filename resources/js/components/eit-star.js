@@ -3,7 +3,7 @@ import './icons/eit-icon';
 import './utils/eit-ajax';
 
 import {store} from '../redux/store';
-import { negativeFeedback, positiveFeedback } from '../redux/actions/app_actions';
+import { negativeFeedback, positiveFeedback, changeLoginVisibility} from '../redux/actions/app_actions';
 
 class EitStar extends LitElement {
   static get styles() {
@@ -87,6 +87,7 @@ class EitStar extends LitElement {
   }
   ajaxError(e) {
     store.dispatch(negativeFeedback(e.detail.msg));
+    store.dispatch(changeLoginVisibility(true));
   }
 }
 

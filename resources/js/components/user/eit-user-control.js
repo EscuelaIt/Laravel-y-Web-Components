@@ -2,7 +2,14 @@ import { LitElement, html, css } from 'lit-element';
 import './eit-login-modal';
 import './eit-user-menu'; 
 
-class EitUserControl  extends LitElement {
+
+import { store } from "../../redux/store";
+import { changeLoginVisibility } from "../../redux/actions/app_actions";
+import { connect } from 'pwa-helpers';
+import { getUser } from '../../redux/actions/user_actions';
+
+
+class EitUserControl extends connect(store)(LitElement) {
 
   static get styles() {
     return css`
@@ -39,12 +46,14 @@ class EitUserControl  extends LitElement {
     this.getUser();
   }
 
+  stateChanged(state) {
+    this.loggedIn = state.user.loggedIn;
+    this.userData = state.user.userData;
+  }
+
   render() {
     return html`
       ${this.loggedIn ? this.templateUser : this.templateLogin}
-      <eit-login-modal id="elmodal" @login-valid="${this.loginValid}" ?loggedIn="${this.loggedIn}">
-        <slot name="logininputs"></slot>
-      </eit-login-modal>
     `;
   }
 
@@ -64,7 +73,7 @@ class EitUserControl  extends LitElement {
 
   loginRequest(e) {
     e.preventDefault();
-    this.elmodal.open();
+    store.dispatch(changeLoginVisibility(true));
   }
 
   loginValid(e) {
@@ -73,14 +82,7 @@ class EitUserControl  extends LitElement {
   }
 
   getUser() {
-    axios.get("/api-user/get").then(res => {
-      if (res.status == 200) {
-        if (res.data) {
-          this.loggedIn = res.data.data.loggedIn;
-          this.userData = res.data.data.user;
-        }
-      }
-    });
+    store.dispatch(getUser());
   }
 }
 

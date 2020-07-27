@@ -31,5 +31,7 @@
     </footer>
 
     @include('common.feedback-element')
+    @include('common.login-element')
+    
 </body>
 </html>

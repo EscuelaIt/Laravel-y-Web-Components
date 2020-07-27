@@ -1,7 +1,10 @@
 import { LitElement, html, css } from 'lit-element';
 import '@dile/dile-avatar/dile-avatar';
 
-class EitCommentInsert  extends LitElement {
+import { store } from "../../redux/store";
+import { connect } from 'pwa-helpers';
+
+class EitCommentInsert  extends connect(store)(LitElement) {
 
   static get styles() {
     return css`
@@ -29,18 +32,37 @@ class EitCommentInsert  extends LitElement {
   }
 
   static get properties() {
-    return {};
+    return {
+      userData: { type: Object }
+    };
   }
+
+  get defaultUserData() {
+    return {
+      name: ""
+    };
+    
+  }
+
 
   constructor() {
     super();
+    this.userData = this.defaultUserData;
+  }
+
+  stateChanged(state) {
+    if (state.user && state.user.loggedIn) {
+      this.userData = state.user.userData;
+    } else {
+      this.userData = this.defaultUserData;
+    }
   }
 
   render() {
     return html`
       <section>
         <div class="avatar">
-          <dile-avatar></dile-avatar>
+          <dile-avatar initial="${this.userData.name[0]}"></dile-avatar>
         </div>
         <div class="comment">
           <textarea></textarea>

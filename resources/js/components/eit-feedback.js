@@ -1,7 +1,10 @@
 import { LitElement, html, css } from 'lit-element';
 import "@dile/dile-toast/dile-toast"; 
 
-class EitFeedback  extends LitElement {
+import { connect } from 'pwa-helpers';
+import { store } from '../redux/store';
+
+class EitFeedback extends connect(store)(LitElement) {
 
   static get styles() {
     return css`
@@ -25,7 +28,8 @@ class EitFeedback  extends LitElement {
     return {
         time: { type: Number },
         initMsg: { type: String },
-        initStatus: { type: String }
+        initStatus: { type: String },
+        incomingMsg: { type: Object }
     };
   }
 
@@ -33,6 +37,23 @@ class EitFeedback  extends LitElement {
     super();
     this.time = 5000;
     this.initStatus = "neutral";
+  }
+
+  stateChanged(state) {
+    console.log('nuevo state', state);
+    this.incomingMsg = state.feedback;
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has("incomingMsg")) {
+      this.changeIncomingMsg(this.incomingMsg);
+    }
+  }
+
+  changeIncomingMsg(feedbackMsg) {
+    if (feedbackMsg && feedbackMsg.msg && feedbackMsg.status) {
+      this.toast.open(feedbackMsg.msg, feedbackMsg.status);
+    }
   }
 
   render() {

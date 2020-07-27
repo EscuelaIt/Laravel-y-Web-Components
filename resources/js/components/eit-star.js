@@ -2,6 +2,9 @@ import { LitElement, html, css } from 'lit-element';
 import './icons/eit-icon';
 import './utils/eit-ajax';
 
+import {store} from '../redux/store';
+import { negativeFeedback, positiveFeedback } from '../redux/actions/app_actions';
+
 class EitStar extends LitElement {
   static get styles() {
     return css`
@@ -80,9 +83,10 @@ class EitStar extends LitElement {
   ajaxSuccess(e) {
     console.log(e.detail);
     this.counterValue = e.detail.counter;
+    store.dispatch(positiveFeedback('Contador actualizado...'))
   }
   ajaxError(e) {
-    console.log(e.detail.msg);
+    store.dispatch(negativeFeedback(e.detail.msg));
   }
 }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Counter;
+use App\Counter;
 
 class FrontController extends Controller
 {
@@ -12,9 +12,9 @@ class FrontController extends Controller
     }
 
     public function publica() {
-        // $counter = Counter::find(1);
+        $counter = Counter::find(1);
         return view('publica')->with([
-            // 'counter' => $counter,
+            'counter' => $counter,
         ]);
     }
 }

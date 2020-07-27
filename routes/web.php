@@ -30,6 +30,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('api-user/get', 'ApiController@getUser');
+Route::post('api-counter/increment', 'ApiController@incrementCounter');
+
 
 Route::get('/protegida', 'FrontController@protegida')->middleware(['auth']);
 Route::get('/publica', 'FrontController@publica');

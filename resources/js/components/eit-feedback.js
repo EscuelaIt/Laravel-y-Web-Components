@@ -63,11 +63,11 @@ class EitFeedback extends connect(store)(LitElement) {
   }
 
   firstUpdated() {
-    console.log(this.initMsg);
-      this.toast = this.shadowRoot.getElementById("toast");
-      if(this.initMsg) {
-        this.toast.open(this.initMsg, this.initStatus);
-      }
+    //console.log(this.initMsg);
+    this.toast = this.shadowRoot.getElementById("toast");
+    if(this.initMsg) {
+      this.toast.open(this.initMsg, this.initStatus);
+    }
   }
 }
 

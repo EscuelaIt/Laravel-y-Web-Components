@@ -6,6 +6,7 @@
 
     <eit-user-control>
       <ul class="Nav-actions" slot="loginlinks">
+        <li><a href="/publica">Página pública</a></li>
         <li><a href="{{ route('login') }}" id="loginlink">{{ __('Login') }}</a></li>
         <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
       </ul>

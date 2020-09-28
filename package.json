@@ -11,18 +11,20 @@
     },
     "devDependencies": {
         "axios": "^0.19",
-        "browser-sync": "^2.26.7",
+        "browser-sync": "^2.26.12",
         "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^7.0",
-        "laravel-mix": "^5.0.1",
+        "laravel-mix": "^5.0.5",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@dile/dile-app-drawer": "^2.0.2",
         "@dile/dile-avatar": "^1.0.0",
         "@dile/dile-checkbox": "^1.0.1",
+        "@dile/dile-hamburger": "^1.1.0",
         "@dile/dile-menu-overlay": "^1.0.0",
         "@dile/dile-modal": "^1.0.1",
         "@dile/dile-slide-down-mixin": "^1.0.1",
